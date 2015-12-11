@@ -15,10 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from . import views
 
 urlpatterns = [
+	url(r'^courses/', include('courses.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.hello_world),
 ]
+
+# If we are in debub mode it adds a static path that points to all of our
+# static files
+urlpatterns += staticfiles_urlpatterns()
